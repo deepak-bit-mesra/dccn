@@ -1,0 +1,10 @@
+git remote add origin https://github.com/deepak7bhavya/dccn.git
+
+
+git pull https://github.com/deepak7bhavya/dccn.git --allow-unrelated-histories
+-->ye wala hala ki thora gadbad hai par chalega
+
+
+git push -u origin master
+
+
