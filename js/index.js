@@ -19,6 +19,7 @@ $(document).ready(function(){
         $("#id_even-parity-output").val(computed_str);
 
     });
+    
     /* --------------------------------------------------- */
     $("#id_add-noise").click(function(){
         $("#id_even-parity-output").prop("disabled",false);
