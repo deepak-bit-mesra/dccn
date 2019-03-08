@@ -57,6 +57,6 @@ function count_char(str,char){
             count++;
         }
     }
-    return count;
+    return count; 
     
 }
