@@ -44,14 +44,39 @@
                     <div class="card-body">
                         <form>
                             <div class="form-group row">
-                                
-                                <input type="number" class="form-control" >
+                                <label class="col-sm-12 col-lg-3">Segments : </label>
+                                <input type="number" min="4" max="4" id="id_segment" class="form-control col-sm-12 col-lg-3" >
                             </div>
                             <div class="form-group row">
-                                <input type="number" class="form-control">
+                                <label class="col-sm-12 col-lg-3">Number of Bits : </label>
+                                <input type="number" min="8" max="8" id="id_num_bits" class="form-control col-sm-12 col-lg-3">
+                            </div>
+                            <div class="form-group row">
+                                <button type="button"  class="btn btn-primary" id="continue">Continue</button>
+                            </div>
+                            <div class="form-group row">
+                                <label  class="col-sm-12 col-lg-3">Segment Number : <span id="seg_num"></span> </label>
+                                <input type="text" maxlength="8" id="id_bin_entries" class="form-control col-sm-12 col-lg-6">
+                                <button type="button" class="btn btn-primary" id="id_nextbtn">Next &rarr;</button>
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <a class="card-link" data-toggle="collapse" href="#collapseTwo">
+                        Original Data
+                    </a>
+                </div>
+                <div id="collapseTwo" class="collapse show">
+                    <div class="card-body">
+                        <p id="card-body-para">
+                            
+                        </p>
+                    </div>
+
                 </div>
             </div>
 
@@ -121,13 +146,13 @@
                                 <h3 class="form-head">SENDER</h3>
                                 <div class="form-group">
                                     <label for="even-parity-input">Enter Binary String to send</label>
-                                    <input class="form-control" id="id_even-parity-input" autofocus="" required="" type="text" placeholder="binary eg.101010">
+                                    <input class="form-control" id="id_even-parity-input" autofocus="" required="" type="number" placeholder="binary eg.101010">
                                 </div>
                                 <div class="form-group">
                                     <button type="button" class="btn btn-primary" id="id_sender-cpb">Compute Parity Bit</button>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" id="id_even-parity-output" autofocus="" required="" disabled type="text" placeholder="">
+                                    <input class="form-control" id="id_even-parity-output" autofocus="" required="" disabled type=" number" placeholder="">
                                 </div>
                                 <div class="form-group">
                                     <button type="button" class="btn btn-primary" id="id_add-noise">Add Noise</button>
@@ -143,7 +168,7 @@
                                     <h3 class="form-head">RECEIVER</h3>
                                 <div class="form-group">
                                     <label for="even-parity-input">Data Received</label>
-                                    <input class="form-control" disabled id="id_receiver-even-parity-input" autofocus="" required="" type="text" placeholder="binary eg.101010">
+                                    <input class="form-control" disabled id="id_receiver-even-parity-input" autofocus="" required="" type="number" placeholder="binary eg.101010">
                                 </div>
                                 <div class="form-group">
                                     <button type="button" class="btn btn-primary" id="id_receiver-cpb">Compute Parity Bit</button>

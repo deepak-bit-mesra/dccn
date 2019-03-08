@@ -1,10 +1,11 @@
+var global={};
 $(document).ready(function(){
     //----------------------------GLOBALS-------------------------------------------------
     var acceptAlert = "<div class='alert text-center alert-success'><strong>ACCEPTED !!!</strong> </div>";
     var rejectAlert = "<div class='alert text-center alert-danger'><strong>REJECTED !!!</strong> </div>";
     var remainder = 0;//Remainder for ODD EVEN Parity Even =0 , Odd = 1;
-
-
+    global.original_data = [];
+    var inputbox = '<input type="number"  class="form-control col-sm-12 col-lg-3" ></input>'
 
 
     /*****************  FUNCTIONS  ************************/
@@ -49,6 +50,28 @@ $(document).ready(function(){
         remainder = 1;
     });
     /* --------------------------------------------------- */
+    $("#continue").click(function(){
+        global.num_segment = parseInt($("#id_segment").val());
+        global.num_bits = parseInt($("#id_num_bits").val());
+        
+
+        for(i=0;i<global.num_segment;i++){
+            
+        }
+        debugger;
+
+    });
+    /* --------------------------------------------------- */
+    $("#id_nextbtn").click(function(){
+        var temp = $("#id_bin_entries").val();
+        global.original_data.push(temp);
+        $("#id_bin_entries").val("");
+
+        $("#card-body-para").text(global.original_data.toString());
+    });
+
+    /* --------------------------------------------------- */
+
 });
 
 function count_char(str,char){
