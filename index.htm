@@ -16,36 +16,96 @@
 </head>
 <body>
 
-<div class="container-fluid">
-    <ul class="nav nav-tabs">
+<div class="container-fluid body">
+    <ul class="nav nav-tabs nav-level-1">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#checksum">Checksum</a>
+            <a class="nav-link active" data-toggle="tab" href="#id_checksum">Checksum</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#parity1d">1 D Parity</a>
+            <a class="nav-link" data-toggle="tab" href="#id_parity1d">1 D Parity</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#parity2d">2 D Parity</a>
+            <a class="nav-link" data-toggle="tab" href="#id_parity2d">2 D Parity</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#crc">CRC</a>
+            <a class="nav-link" data-toggle="tab" href="#id_crc">CRC</a>
         </li>
     </ul>
-    <div class="tab-content">
-        <div class="tab-pane container fade active show" id="checksum">
-            nbdv
+    <div class="tab-content level-1">
+        <div class="tab-pane container-fluid fade active show" id="id_checksum">
+            checksum
+
 
         </div>
-        <div class="tab-pane container fade"  id="parity1d">
-            hrh
+        <div class="tab-pane container-fluid fade level-2-wrapper"  id="id_parity1d">
+            <ul class="nav nav-pills checksum-nav nav-level-2">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" id="id_even_parity_tab" href="#id_evenparity">Even Parity</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" id="id_odd_parity_tab" href="#id_evenparity">Odd Parity</a>
+                </li>
+            </ul>
+            <div class="tab-content level-2">
+                <div class="tab-pane container-fluid fade active show" id="id_evenparity">
+                    <div class="row even-parity-row">
+                        <div class="container-fluid sender col-sm-12 col-md-6">
+                            <form action="" class="sender-form bg-grey">
+                                <h3 class="form-head">SENDER</h3>
+                                <div class="form-group">
+                                    <label for="even-parity-input">Enter Binary String to send</label>
+                                    <input class="form-control" id="id_even-parity-input" autofocus="" required="" type="text" placeholder="binary eg.101010">
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary" id="id_sender-cpb">Compute Parity Bit</button>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" id="id_even-parity-output" autofocus="" required="" disabled type="text" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary" id="id_add-noise">Add Noise</button>
+                                    <button type="button" class="btn btn-success" id="id_send">Send</button>
+                                </div>
+
+                            </form>
+
+
+                        </div>
+                        <div class="container-fluid receiver col-sm-12 col-md-6">
+                            <form action="" class="sender-form bg-grey">
+                                    <h3 class="form-head">RECEIVER</h3>
+                                <div class="form-group">
+                                    <label for="even-parity-input">Data Received</label>
+                                    <input class="form-control" disabled id="id_receiver-even-parity-input" autofocus="" required="" type="text" placeholder="binary eg.101010">
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary" id="id_receiver-cpb">Compute Parity Bit</button>
+                                </div>
+                                <div class="form-group">
+                                    <div class="container-fluid" id="acceptance">
+                                        
+                                    </div>
+                                </div>
+                                
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab-pane container-fluid fade" id="id_oddparity">
+                    oddd
+                </div>
+            </div>
         </div>
-        <div class="tab-pane container fade" id="parity2d">
+        <div class="tab-pane container-fluid fade" id="id_parity2d">
             uyuu
         </div>
-        <div class="tab-pane container fade" id="crc">
+        <div class="tab-pane container-fluid fade" id="id_crc">
             kkk
         </div>
     </div>
+
 </div>
 
 </body>
