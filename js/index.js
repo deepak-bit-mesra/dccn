@@ -5,10 +5,11 @@ $(document).ready(function(){
     var rejectAlert = "<div class='alert text-center alert-danger'><strong>REJECTED !!!</strong> </div>";
     var remainder = 0;//Remainder for ODD EVEN Parity Even =0 , Odd = 1;
     global.original_data = [];
+    global.segment_number=0;
     var inputbox = '<input type="number"  class="form-control col-sm-12 col-lg-3" ></input>'
+    global.checksumArr = ['10011001','11100010','00100100','10000100'];
 
-
-    /*****************  FUNCTIONS  ************************/
+    /*****************  Events  ************************/
     $("#id_sender-cpb").click(function(){
         var inp = $("#id_even-parity-input");
         inp_str = inp.val();
@@ -56,23 +57,36 @@ $(document).ready(function(){
         
 
         for(i=0;i<global.num_segment;i++){
-            
+            //nothing
         }
         debugger;
 
     });
     /* --------------------------------------------------- */
     $("#id_nextbtn").click(function(){
-        var temp = $("#id_bin_entries").val();
-        global.original_data.push(temp);
-        $("#id_bin_entries").val("");
-
-        $("#card-body-para").text(global.original_data.toString());
+        add_to_original_data_array();
     });
 
     /* --------------------------------------------------- */
+    $("#id_bin_entries").keypress(function (e) { 
+        console.log(e.which);//not using keycode
+        //debugger;
+        if(e.which !== 49 && e.which!== 48){
+            console.log("nothing");
+            e.preventDefault();
+        }
+        if(e.which === 13){
+            console.log("Enter Pressed");
+            add_to_original_data_array();
+            var sg_num_span = $("#seg_num");
+            sg_num_span.text(++global.segment_number);
+        }
+    });
 
 });
+
+/* ********************* Functions **********************  */
+
 
 function count_char(str,char){
     count = 0;
@@ -83,4 +97,74 @@ function count_char(str,char){
     }
     return count; 
     
+}
+/* --------------------------------------------------- */
+function add_to_original_data_array(){
+    var temp = $("#id_bin_entries").val();
+    debugger;
+    temp = get_8_bit_binary_from_str(temp);
+    global.original_data.push(temp);
+    $("#id_bin_entries").val("");
+    $("#card-body-para").text(global.original_data.toString());
+}
+/* --------------------------------------------------- */
+function parse_binaryInt(str){
+    return parseInt(str,2);
+}
+/* --------------------------------------------------- */
+
+/* --------------------------------------------------- */
+function get_8_bit_binary(num){
+    var concatinated_str = '00000000' + num.toString(2);
+    var last8bits = concatinated_str.substr(-8);//last 8 characters of string
+    return last8bits;
+}
+/* --------------------------------------------------- */
+function get_8_bit_binary_from_str(str){
+    var concatinated_str = '00000000' + str;
+    var last8bits = concatinated_str.substr(-8);//last 8 characters of string
+    return last8bits;
+}
+/* --------------------------------------------------- */
+function checksum_Addition(a,b){
+    //This Function will take 2 numbers of 8 bits
+    // Add them . If there is 1 extra bit,It means that
+    // we have to subtract the value of 9th bit from left i.e. 256
+    // then Add 1 to the sum and return that.
+    x = parse_binaryInt(a);
+    y = parse_binaryInt(b);
+    var ans = (x+y)%255;
+    //If there is 9th bit 
+    // removed 9th bit and then added it.
+    // % operator is used because it will remove the 9th bit
+    // As well as add it to the sum
+    console.log("In checksum_Addition");
+    console.log("a = ",a);
+    console.log("b = ",b);
+    console.log("ans = ",get_8_bit_binary(ans));
+    return get_8_bit_binary(ans);
+}
+/* --------------------------------------------------- */
+function checksum_send(bin_data_arr){
+    var len = bin_data_arr.length;
+    var i=0;
+    var sum = get_8_bit_binary(0);
+    $.each(bin_data_arr,function(index,value){
+        sum = checksum_Addition(sum,value);
+    });
+    return sum;
+}
+function bitwise_NOT(str_8_bit){
+    var ans = get_8_bit_binary(0);
+    len = str_8_bit.length;
+    var i;
+    for(i=0;i<len;i++){
+        if(str_8_bit[i]=='1'){
+            ans[i]='0';
+        }
+        else{
+            ans[i] = '1';
+        }
+    }
+    return ans;
 }

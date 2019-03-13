@@ -32,8 +32,34 @@
         </li>
     </ul>
     <div class="tab-content level-1">
-        <div class="tab-pane fade active show" id="id_checksum">
+        <div class="tab-pane fade active show level-2-wrapper" id="id_checksum">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h2> Checksum </h2> 
+                    <p>Blocks of data from the source are subjected to a check bit or parity bit generator form, where a parity of :
+                        <ul type="disk">
+                            <li>
+                                In checksum error detection scheme, the data is divided into k segments each of m bits.
+                            </li>
+                            <li>
+                                In the sender’s end the segments are added using 1’s complement arithmetic to get the sum. The sum is complemented to get the checksum.
+                            </li>
+                            <li>
+                                The checksum segment is sent along with the data segments.
+                            </li>
+                            <li>
+                                At the receiver’s end, all received segments are added using 1’s complement arithmetic to get the sum. The sum is complemented.
+                            </li>
+                            <li>
+                                If the result is zero, the received data is accepted; otherwise discarded.
+                            </li>
+                        </ul>
+                        
+                    </p>
+                    <img class="img-fluid center" src="assets/checksum.jpg">
 
+                </div>
+            </div>
             <div class="card">
                 <div class="card-header">
                     <a class="card-link" data-toggle="collapse" href="#collapseOne">
@@ -55,9 +81,9 @@
                                 <button type="button"  class="btn btn-primary" id="continue">Continue</button>
                             </div>
                             <div class="form-group row">
-                                <label  class="col-sm-12 col-lg-3">Segment Number : <span id="seg_num"></span> </label>
-                                <input type="text" maxlength="8" id="id_bin_entries" class="form-control col-sm-12 col-lg-6">
-                                <button type="button" class="btn btn-primary" id="id_nextbtn">Next &rarr;</button>
+                                <label  class="col-sm-12 col-lg-3">Segment Number : <span id="seg_num">0</span> </label>
+                                <input type="text" maxlength="8" id="id_bin_entries" class="form-control col-sm-12 col-lg-6 no-right-radius">
+                                <button type="button" class="btn btn-primary no-left-radius" id="id_nextbtn">Next &rarr;</button>
                             </div>
                         </form>
                     </div>
@@ -191,7 +217,16 @@
             </div>
         </div>
         <div class="tab-pane  fade" id="id_parity2d">
-            uyuu
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h2> Two-dimensional Parity check </h2> 
+                    <p>
+                        Parity check bits are calculated for each row, which is equivalent to a simple parity check bit. Parity check bits are also calculated for all columns, 
+                        then both are sent along with the data. At the receiving end these are compared with the parity bits calculated on the received data. 
+                    </p>
+                    <img class="img-fluid center" src="assets/Two Dimension Parity.jpg">
+                </div>
+            </div>
         </div>
         <div class="tab-pane  fade" id="id_crc">
             kkk
