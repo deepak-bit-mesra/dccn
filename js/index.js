@@ -5,8 +5,7 @@ $(document).ready(function(){
     var rejectAlert = "<div class='alert text-center alert-danger'><strong>REJECTED !!!</strong> </div>";
     var remainder = 0;//Remainder for ODD EVEN Parity Even =0 , Odd = 1;
     global.original_data = [];
-    global.segment_number=0;
-    var inputbox = '<input type="number"  class="form-control col-sm-12 col-lg-3" ></input>'
+    global.segment_number=1;
     global.checksumArr = ['10011001','11100010','00100100','10000100'];
 
     /*****************  Events  ************************/
@@ -51,6 +50,15 @@ $(document).ready(function(){
         remainder = 1;
     });
     /* --------------------------------------------------- */
+    /*
+    *
+    *       1D PARITY ENDED
+    *       CHECKSUM STARTED
+    * 
+    * 
+    * 
+    * 
+    * */
     $("#continue").click(function(){
         global.num_segment = parseInt($("#id_segment").val());
         global.num_bits = parseInt($("#id_num_bits").val());
@@ -78,14 +86,70 @@ $(document).ready(function(){
         if(e.which === 13){
             console.log("Enter Pressed");
             add_to_original_data_array();
-            var sg_num_span = $("#seg_num");
-            sg_num_span.text(++global.segment_number);
+            
+
         }
     });
+    /* --------------------------------------------------- */
+    $("#send_checksum").click(function(e){
+        //e.preventDefault();
+        $("#text_Area_received_Data").text(global.original_data.toString());
+        try{
+            $("#received_Checksum").html(global.checksum_SentData.checksum);
+            $("#id_verifychecksum").prop("disabled",false);
+            $("#checksum_add_noise").prop("disabled",false);
+        }
+        catch(err){
+            debugger;
+            console.error("ERROR :- ",err.message);
+            debugger;
+            
+        }
+        
+        
+
+    });
+
+
+    $("#id_verifychecksum").click(function (e) { 
+        //e.preventDefault();
+        var receivedData = $("#text_Area_received_Data").val();
+        var receivedChecksum =  $("#received_Checksum").text();
+
+        var receivedDataArray = str_to_array(receivedData);
+        var sum = checksum(receivedDataArray)["sum"];
+        debugger;
+
+        sum = checksum_Addition(sum,receivedChecksum);//Complement
+        console.log("sum + checksum  = " ,sum);
+        var message = $("#checksum_acceptance");
+        if(sum==='00000000'){
+            message.html(acceptAlert);
+        }
+        else{
+            message.html(rejectAlert);
+        }
+
+
+
+        
+    });
+    
+
+    $("#text_Area_received_Data").
 
 });
 
+
+
 /* ********************* Functions **********************  */
+/*
+*
+*
+*
+*
+*
+*/
 
 
 function count_char(str,char){
@@ -101,11 +165,19 @@ function count_char(str,char){
 /* --------------------------------------------------- */
 function add_to_original_data_array(){
     var temp = $("#id_bin_entries").val();
-    debugger;
+    //debugger;
     temp = get_8_bit_binary_from_str(temp);
     global.original_data.push(temp);
+
+    //Just TExt Changes
     $("#id_bin_entries").val("");
     $("#card-body-para").text(global.original_data.toString());
+    var sg_num_span = $("#seg_num");
+    sg_num_span.text("(k=" + (++global.segment_number) +")");
+    var m = "<BR>m = 8";
+    $("#k_and_m").html("k = " + (global.segment_number - 1) + m);
+    global.checksum_SentData = checksum(global.original_data);
+    $("#sender_sum").html("Sum = "+global.checksum_SentData.sum+"<BR>CheckSum = "+global.checksum_SentData.checksum);
 }
 /* --------------------------------------------------- */
 function parse_binaryInt(str){
@@ -145,26 +217,38 @@ function checksum_Addition(a,b){
     return get_8_bit_binary(ans);
 }
 /* --------------------------------------------------- */
-function checksum_send(bin_data_arr){
+function checksum(bin_data_arr){
+    
     var len = bin_data_arr.length;
     var i=0;
     var sum = get_8_bit_binary(0);
     $.each(bin_data_arr,function(index,value){
         sum = checksum_Addition(sum,value);
     });
-    return sum;
+    var checksum = bitwise_NOT(sum);
+    return {"sum":sum,"checksum":checksum};
 }
+/* --------------------------------------------------- */
+
 function bitwise_NOT(str_8_bit){
-    var ans = get_8_bit_binary(0);
-    len = str_8_bit.length;
+    var ans = ['0','0','0','0','0','0','0','0'];
+    var len = str_8_bit.length;
     var i;
     for(i=0;i<len;i++){
-        if(str_8_bit[i]=='1'){
+        if(str_8_bit[i]=='1')
             ans[i]='0';
-        }
-        else{
+        else
             ans[i] = '1';
-        }
     }
-    return ans;
+    return ans.join('');
 }
+/* --------------------------------------------------- */
+function str_to_array(str){
+    var arr = str.split(',');
+    function trimComma(value){
+        return value!='';
+    }
+    arr= arr.filter(trimComma);
+    return arr;
+}
+/* --------------------------------------------------- */

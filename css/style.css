@@ -29,9 +29,22 @@ body{
 .no-left-radius{
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
+    height: fit-content;
 }
 .center{
         display: block;
         margin-left: auto;
         margin-right: auto;
+}
+.dispnone{
+    display: none;
+}
+.overflow-para{
+    /* display: block; */
+    overflow-y: scroll;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    min-height: 50px;
+    max-height: 130px;
 }

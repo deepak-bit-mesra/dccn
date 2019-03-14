@@ -33,78 +33,180 @@
     </ul>
     <div class="tab-content level-1">
         <div class="tab-pane fade active show level-2-wrapper" id="id_checksum">
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                    <h2> Checksum </h2> 
-                    <p>Blocks of data from the source are subjected to a check bit or parity bit generator form, where a parity of :
-                        <ul type="disk">
-                            <li>
-                                In checksum error detection scheme, the data is divided into k segments each of m bits.
-                            </li>
-                            <li>
-                                In the sender’s end the segments are added using 1’s complement arithmetic to get the sum. The sum is complemented to get the checksum.
-                            </li>
-                            <li>
-                                The checksum segment is sent along with the data segments.
-                            </li>
-                            <li>
-                                At the receiver’s end, all received segments are added using 1’s complement arithmetic to get the sum. The sum is complemented.
-                            </li>
-                            <li>
-                                If the result is zero, the received data is accepted; otherwise discarded.
-                            </li>
-                        </ul>
-                        
-                    </p>
-                    <img class="img-fluid center" src="assets/checksum.jpg">
-
-                </div>
-            </div>
             <div class="card">
                 <div class="card-header">
-                    <a class="card-link" data-toggle="collapse" href="#collapseOne">
-                    Enter the value for Segments and Bits
-                    </a>
+                    <a  href="#about_checksum" data-toggle="collapse" class="card-link">Checksum</a>
                 </div>
-                <div id="collapseOne" class="collapse show" >
+                <div id="about_checksum" class="collapse show">
                     <div class="card-body">
-                        <form>
-                            <div class="form-group row">
-                                <label class="col-sm-12 col-lg-3">Segments : </label>
-                                <input type="number" min="4" max="4" id="id_segment" class="form-control col-sm-12 col-lg-3" >
+                        <div class="jumbotron jumbotron-fluid">
+                            <div class="container">
+                                <h2> Checksum </h2> 
+                                <p>Blocks of data from the source are subjected to a check bit or parity bit generator form, where a parity of :
+                                    <ul type="disk">
+                                        <li>
+                                            In checksum error detection scheme, the data is divided into k segments each of m bits.
+                                        </li>
+                                        <li>
+                                            In the sender’s end the segments are added using 1’s complement arithmetic to get the sum. The sum is complemented to get the checksum.
+                                        </li>
+                                        <li>
+                                            The checksum segment is sent along with the data segments.
+                                        </li>
+                                        <li>
+                                            At the receiver’s end, all received segments are added using 1’s complement arithmetic to get the sum. The sum is complemented.
+                                        </li>
+                                        <li>
+                                            If the result is zero, the received data is accepted; otherwise discarded.
+                                        </li>
+                                    </ul>
+                                    
+                                </p>
+                                <img class="img-fluid center" src="assets/checksum.jpg">
+            
                             </div>
-                            <div class="form-group row">
-                                <label class="col-sm-12 col-lg-3">Number of Bits : </label>
-                                <input type="number" min="8" max="8" id="id_num_bits" class="form-control col-sm-12 col-lg-3">
-                            </div>
-                            <div class="form-group row">
-                                <button type="button"  class="btn btn-primary" id="continue">Continue</button>
-                            </div>
-                            <div class="form-group row">
-                                <label  class="col-sm-12 col-lg-3">Segment Number : <span id="seg_num">0</span> </label>
-                                <input type="text" maxlength="8" id="id_bin_entries" class="form-control col-sm-12 col-lg-6 no-right-radius">
-                                <button type="button" class="btn btn-primary no-left-radius" id="id_nextbtn">Next &rarr;</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <a class="card-link" data-toggle="collapse" href="#collapseTwo">
-                        Original Data
-                    </a>
-                </div>
-                <div id="collapseTwo" class="collapse show">
-                    <div class="card-body">
-                        <p id="card-body-para">
-                            
-                        </p>
+                        </div>
                     </div>
 
                 </div>
             </div>
+            <div class="row">
+                <div class="card col-sm-12 col-md-12 col-lg-6 enter-the-segment">
+                    <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                            <h3 class="form-head">SENDER</h3>
+                        </a>
+                    </div>
+                    <div id="collapseOne" class="collapse show" >
+                        <div class="card-body">
+                            <form>
+                                
+                                <div class="form-group dispnone row">
+                                    <label class="col-sm-12 col-lg-3">Segments : </label>
+                                    <input type="number" min="4" max="4" id="id_segment" class="form-control col-sm-12 col-lg-3" >
+                                </div>
+                                <div class="form-group dispnone row">
+                                    <label class="col-sm-12 col-lg-3">Number of Bits : </label>
+                                    <input type="number" min="8" max="8" id="id_num_bits" class="form-control col-sm-12 col-lg-3">
+                                </div>
+                                <div class="form-group dispnone row">
+                                    <button type="button"  class="btn btn-primary" id="continue">Continue</button>
+                                </div>
+                                <div class="form-group row">
+                                    <label  class=" col-sm-12 col-md-4 col-lg-3">Segment Number : <span id="seg_num">1</span> </label>
+                                    <input  class="form-control col-sm-12 col-md-6  col-lg-6 no-right-radius" type="text" maxlength="8" id="id_bin_entries">
+                                    <button type="button" class="btn btn-primary col-sm-12 col-md-2 no-left-radius " id="id_nextbtn">Next &rarr;</button>
+                                </div>
+                            </form>
+                            <p id="k_and_m"></p>
+                            <p id="card-body-para" class="overflow-para"></p>
+                            <p id="sender_sum"></p>
+                            <button class="btn btn-success" id="send_checksum">Send</button>
+                        </div>
+                    </div>
+
+                    <!-- <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#collapseTwo">
+                            Data To be Sent
+                        </a>
+                    </div>
+                    <div id="collapseTwo" class="collapse show">
+                        <div class="card-body">
+                            <p id="k_and_m"></p>
+                            <p id="card-body-para" class="overflow-para"></p>
+                            <p id="sender_sum"></p>
+                            <button class="btn btn-success" id="send_checksum">Send</button>
+                        </div>
+
+                    </div> -->
+
+                </div>
+
+                <div class="card col-sm-12 col-md-12 col-lg-6 enter-the-segment">
+                    <div class="card enter-the-segment">
+                        <div class="card-header">
+                            <a class="card-link" data-toggle="collapse" href="#collapseFour">
+                                <h3 class="form-head">RECEIVER</h3>
+                            </a>
+                        </div>
+                        <div id="collapseFour" class="collapse show" >
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-group dispnone row">
+                                        <label class="col-sm-12 col-lg-3">Segments : </label>
+                                        <input type="number" min="4" max="4" id="id_segment" class="form-control col-sm-12 col-lg-3" >
+                                    </div>
+                                    <div class="form-group dispnone row">
+                                        <label class="col-sm-12 col-lg-3">Number of Bits : </label>
+                                        <input type="number" min="8" max="8" id="id_num_bits" class="form-control col-sm-12 col-lg-3">
+                                    </div>
+                                    <div class="form-group dispnone row">
+                                        <button type="button"  class="btn btn-primary" id="continue">Continue</button>
+                                    </div>
+                                    <div class="form-group row">
+                                        <p >
+                                            Received CheckSum :- 
+                                            <span id="received_Checksum"></span>
+                                        </p>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="received_Data">Received Data :-</label> 
+                                        <textarea class="form-control" rows="5" id="text_Area_received_Data" name="text"></textarea>
+                                    </div>
+                                    <div class="form-group row">
+                                        <button type="button" class="btn btn-primary   " disabled id="id_verifychecksum">Verify Checksum</button>
+                                        <button type="button" class="btn btn-warning   " disabled id="checksum_add_noise">Add Noise</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="card original-data">
+                        <div class="card-header">
+                            <a class="card-link" data-toggle="collapse" href="#collapseThree">
+                                    <h3 class="form-head">RESULT</h3>
+                            </a>
+                        </div>
+                        <div id="collapseThree" class="collapse show">
+                            <div class="card-body">
+                                <div class="container-fluid" id="checksum_acceptance">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -211,9 +313,7 @@
                     </div>
 
                 </div>
-                <div class="tab-pane  fade" id="id_oddparity">
-                    oddd
-                </div>
+                
             </div>
         </div>
         <div class="tab-pane  fade" id="id_parity2d">
