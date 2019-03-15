@@ -136,7 +136,7 @@ $(document).ready(function(){
     });
     
 
-    $("#text_Area_received_Data").
+    //$("#text_Area_received_Data").
 
 });
 

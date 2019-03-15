@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Error Detection</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title>Error Detection</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/index.js"></script>
-
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/index.js"></script>
+    <script src="js/shannon_fannon.js"></script>
 </head>
 <body>
 
 <div class="container-fluid body">
     <ul class="nav nav-tabs nav-level-1">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#id_checksum">Checksum</a>
+            <a class="nav-link " data-toggle="tab" href="#id_checksum">Checksum</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#id_parity1d">1 D Parity</a>
@@ -30,9 +30,12 @@
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#id_crc">CRC</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#id_shannon">Shannon</a>
+        </li>
     </ul>
     <div class="tab-content level-1">
-        <div class="tab-pane fade active show level-2-wrapper" id="id_checksum">
+        <div class="tab-pane fade level-2-wrapper" id="id_checksum">
             <div class="card">
                 <div class="card-header">
                     <a  href="#about_checksum" data-toggle="collapse" class="card-link">Checksum</a>
@@ -330,6 +333,36 @@
         </div>
         <div class="tab-pane  fade" id="id_crc">
             kkk
+        </div>
+        <div class="tab-pane fade show active level-2-wrapper" id="id_shannon">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container-fluid">
+                    <h1 class="display-3">
+                        Shannon-Fano Encoding
+                    </h1>
+                    <p class="lead">Jumbo helper text</p>
+                    <hr class="my-2">
+                    <img src="assets/Shannon-fano.jpg " class="img-fluid dispnone" alt="">
+                </div>
+            </div>
+            <div class="container-fluid">
+                <form>
+                    <div class="container">
+                        <form>
+                            <div class="form-group row">
+                                <label for="inputName" class="col-sm-12 col-lg-6 col-form-label"></label>
+                                <div class="col-sm-12 col-lg-6">
+                                    <input type="text" class="form-control" name="inputName" id="inputName" placeholder="">
+                                    <button class="btn">
+                                            Notification <span class="badge badge-primary"></span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
