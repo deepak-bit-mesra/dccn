@@ -48,3 +48,6 @@ body{
     min-height: 50px;
     max-height: 130px;
 }
+#id_verifychecksum,#checksum_add_noise{
+    cursor: not-allowed;
+}

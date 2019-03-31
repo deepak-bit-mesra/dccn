@@ -1,3 +1,5 @@
+"use strict";
+
 var global={};
 $(document).ready(function(){
     //----------------------------GLOBALS-------------------------------------------------
@@ -5,7 +7,9 @@ $(document).ready(function(){
     var rejectAlert = "<div class='alert text-center alert-danger'><strong>REJECTED !!!</strong> </div>";
     var remainder = 0;//Remainder for ODD EVEN Parity Even =0 , Odd = 1;
     global.original_data = [];
+    global._2dp_original_data = [];
     global.segment_number=1;
+    global._2dp_segment_number=1;
     global.checksumArr = ['10011001','11100010','00100100','10000100'];
 
     /*****************  Events  ************************/
@@ -77,14 +81,14 @@ $(document).ready(function(){
 
     /* --------------------------------------------------- */
     $("#id_bin_entries").keypress(function (e) { 
-        console.log(e.which);//not using keycode
+        //console.log(e.which);//not using keycode
         //debugger;
         if(e.which !== 49 && e.which!== 48){
-            console.log("nothing");
+            //console.log("nothing");
             e.preventDefault();
         }
         if(e.which === 13){
-            console.log("Enter Pressed");
+            //console.log("Enter Pressed");
             add_to_original_data_array();
             
 
@@ -97,10 +101,14 @@ $(document).ready(function(){
         try{
             $("#received_Checksum").html(global.checksum_SentData.checksum);
             $("#id_verifychecksum").prop("disabled",false);
+            $("#id_verifychecksum, #checksum_add_noise").css({
+                "cursor":"auto"
+            });
             $("#checksum_add_noise").prop("disabled",false);
         }
         catch(err){
             debugger;
+            window.alert("No Data Found. Please Try Again");
             console.error("ERROR :- ",err.message);
             debugger;
             
@@ -136,24 +144,86 @@ $(document).ready(function(){
     });
     
 
-    //$("#text_Area_received_Data").
+    $("#_2dp_id_nextbtn").click(function(){
+        _2dp_add_to_original_data_array();
+    });
+    $("#_2dp_id_bin_entries").keypress(function (e) { 
+        //console.log(e.which);//not using keycode
+        //debugger;
+        if(e.which !== 49 && e.which!== 48){
+            //console.log("nothing");
+            e.preventDefault();
+        }
+        if(e.which === 13){
+            //console.log("Enter Pressed");
+            _2dp_add_to_original_data_array();
+            
+
+        }
+    });
+    $("#_2dp_send_checksum").click(function(e){
+        $("#_2dp_text_Area_received_Data").text(
+            addingRowAndColumnParity(global._2dp_original_data));
+        debugger;
+        $("#_2dp_id_verifychecksum").prop("disabled",false);
+        $("#_2dp_checksum_add_noise").prop("disabled",false);
+    });
+
+    $("#_2dp_checksum_add_noise").click(function(e){
+        $("#_2dp_text_Area_received_Data").prop("disabled",false);
+    });
 
 });
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ********************* Functions **********************  */
 /*
+
 *
 *
 *
+
 *
 *
+*
+
+*
+*
+*
+
+*
+*
+*
+
 */
 
 
+
 function count_char(str,char){
-    count = 0;
+    var count = 0;
+    var x;
     for(x in str){
         if(str[x] === char){
             count++;
@@ -233,8 +303,8 @@ function checksum(bin_data_arr){
 function bitwise_NOT(str_8_bit){
     var ans = ['0','0','0','0','0','0','0','0'];
     var len = str_8_bit.length;
-    var i;
-    for(i=0;i<len;i++){
+    
+    for(var i=0;i<len;i++){
         if(str_8_bit[i]=='1')
             ans[i]='0';
         else
@@ -252,3 +322,57 @@ function str_to_array(str){
     return arr;
 }
 /* --------------------------------------------------- */
+function _2dp_add_to_original_data_array(){
+    var temp = $("#_2dp_id_bin_entries").val();
+    //debugger;
+    temp = get_8_bit_binary_from_str(temp);
+    global._2dp_original_data.push(temp);
+    
+    //Just TExt Changes
+    $("#_2dp_id_bin_entries").val("");
+    $("#_2dp_card-body-para").text(global._2dp_original_data.toString());
+    var sg_num_span = $("#_2dp_seg_num");
+    sg_num_span.text("(k=" + (++global._2dp_segment_number) +")");
+    var m = "<BR>m = 8";
+    $("#_2dp_k_and_m").html("k = " + (global._2dp_segment_number - 1) + m);
+    //global._2dp_checksum_SentData = checksum(global._2dp_original_data);
+    //$("#_2dp_sender_sum").html("Sum = "+global._2dp_checksum_SentData.sum+"<BR>CheckSum = "+global._2dp_checksum_SentData.checksum);
+}
+
+function addingRowAndColumnParity(arrofStr){
+    debugger;
+    var len = arrofStr.length;
+    var augumented_Arr = new Array(len);
+    //Adding Row Parity
+    
+    for (var i in arrofStr) {
+        console.log(arrofStr[i]);
+        if (count_char(arrofStr[i], '1') % 2 == 0) {
+            augumented_Arr[i] = arrofStr[i] + '0';
+        }
+        else {
+            augumented_Arr[i] = arrofStr[i] + '1';
+        }
+
+    }
+    //Adding Column Parity (The Last Row)
+    //debugger;
+    var tempColumnArr = [];
+    for(var col=0;col<9;col++){//string length becomes 9
+        var tempstr = '';
+        for(i in augumented_Arr){
+            tempstr = tempstr + augumented_Arr[i][col];
+        }
+        
+        tempColumnArr[col] = ''+count_char(tempstr,'1')%2;
+        //debugger;
+        //console.log("tempcolArr ",tempColumnArr);
+        
+        
+ 
+    }
+    augumented_Arr[augumented_Arr.length] = tempColumnArr.join('');
+    //console.log(augumented_Arr);
+    return global.augumented_Arr = augumented_Arr;
+    
+}

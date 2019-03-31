@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="card col-sm-12 col-md-12 col-lg-6 enter-the-segment">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                <h3 class="form-head">SENDER</h3>
+            </a>
+        </div>
+        <div id="_2dp_collapseOne" class="collapse show">
+            <div class="card-body">
+                <form>
+
+                    <div class="form-group dispnone row">
+                        <label class="col-sm-12 col-lg-3">Segments : </label>
+                        <input type="number" min="4" max="4" id="_2dp_id_segment"
+                            class="form-control col-sm-12 col-lg-3">
+                    </div>
+                    <div class="form-group dispnone row">
+                        <label class="col-sm-12 col-lg-3">Number of Bits : </label>
+                        <input type="number" min="8" max="8" id="_2dp_id_num_bits"
+                            class="form-control col-sm-12 col-lg-3">
+                    </div>
+                    <div class="form-group dispnone row">
+                        <button type="button" class="btn btn-primary" id="_2dp_continue">Continue</button>
+                    </div>
+                    <div class="form-group row">
+                        <label class=" col-sm-12 col-md-4 col-lg-3">Segment Number : <span id="_2dp_seg_num">1</span>
+                        </label>
+                        <input class="form-control col-sm-12 col-md-6  col-lg-6 no-right-radius binary-input"
+                            type="text" maxlength="8" id="_2dp_id_bin_entries">
+                        <button type="button" class="btn btn-primary col-sm-12 col-md-2 no-left-radius "
+                            id="_2dp_id_nextbtn">Next &rarr;</button>
+                    </div>
+                </form>
+                <p id="_2dp_k_and_m"></p>
+                <p id="_2dp_card-body-para" class="overflow-para"></p>
+                <p id="_2dp_sender_sum"></p>
+                <button class="btn btn-success" id="_2dp_send_checksum">Send</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card col-sm-12 col-md-12 col-lg-6 enter-the-segment">
+        <div class="card enter-the-segment">
+            <div class="card-header">
+                <a class="card-link" data-toggle="collapse" href="#collapseFour">
+                    <h3 class="form-head">RECEIVER</h3>
+                </a>
+            </div>
+            <div id="_2dp_collapseFour" class="collapse show">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group dispnone row">
+                            <label class="col-sm-12 col-lg-3">Segments : </label>
+                            <input type="number" min="4" max="4" id="_2dp_id_segment"
+                                class="form-control col-sm-12 col-lg-3">
+                        </div>
+                        <div class="form-group dispnone row">
+                            <label class="col-sm-12 col-lg-3">Number of Bits : </label>
+                            <input type="number" min="8" max="8" id="_2dp_id_num_bits"
+                                class="form-control col-sm-12 col-lg-3">
+                        </div>
+                        <div class="form-group dispnone row">
+                            <button type="button" class="btn btn-primary" id="_2dp_continue">Continue</button>
+                        </div>
+                        <div class="form-group row">
+                            <p>
+                                Received CheckSum :-
+                                <span id="_2dp_received_Checksum"></span>
+                            </p>
+                        </div>
+                        <div class="form-group row">
+                            <label for="received_Data">Received Data :-</label>
+                            <textarea class="form-control" rows="5" id="_2dp_text_Area_received_Data"
+                                name="text"></textarea>
+                        </div>
+                        <div class="form-group row">
+                            <button type="button" class="btn btn-primary  col-6 " disabled
+                                id="_2dp_id_verifychecksum">Verify Checksum</button>
+                            <button type="button" class="btn btn-warning  col-6 " disabled
+                                id="_2dp_checksum_add_noise">Add Noise</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="card original-data">
+            <div class="card-header">
+                <a class="card-link" data-toggle="collapse" href="#collapseThree">
+                    <h3 class="form-head">RESULT</h3>
+                </a>
+            </div>
+            <div id="_2dp_collapseThree" class="collapse show">
+                <div class="card-body">
+                    <div class="container-fluid" id="_2dp_checksum_acceptance">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
