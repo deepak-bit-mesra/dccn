@@ -94,7 +94,9 @@ $(document).ready(function(){
 
         }
     });
+
     /* --------------------------------------------------- */
+
     $("#send_checksum").click(function(e){
         //e.preventDefault();
         $("#text_Area_received_Data").text(global.original_data.toString());
@@ -117,6 +119,8 @@ $(document).ready(function(){
         
 
     });
+
+    /* --------------------------------------------------- */
 
 
     $("#id_verifychecksum").click(function (e) { 
@@ -143,10 +147,24 @@ $(document).ready(function(){
         
     });
     
+    /* --------------------------------------------------- */
+    /* --------------------------------------------------- */
+    /*
+    *
+    *       CHECKSUM ENDED
+    *       2D parity STARTED
+    * 
+    * 
+    * 
+    * 
+    * */
 
     $("#_2dp_id_nextbtn").click(function(){
         _2dp_add_to_original_data_array();
     });
+
+    /* --------------------------------------------------- */
+
     $("#_2dp_id_bin_entries").keypress(function (e) { 
         //console.log(e.which);//not using keycode
         //debugger;
@@ -161,17 +179,40 @@ $(document).ready(function(){
 
         }
     });
+
+    /* --------------------------------------------------- */
+
     $("#_2dp_send_checksum").click(function(e){
-        $("#_2dp_text_Area_received_Data").text(
+        $("#_2dp_text_Area_received_Data").val(
             addingRowAndColumnParity(global._2dp_original_data));
         debugger;
         $("#_2dp_id_verifychecksum").prop("disabled",false);
         $("#_2dp_checksum_add_noise").prop("disabled",false);
     });
 
+    /* --------------------------------------------------- */
+
+
     $("#_2dp_checksum_add_noise").click(function(e){
         $("#_2dp_text_Area_received_Data").prop("disabled",false);
     });
+
+    /* --------------------------------------------------- */
+
+    $("#_2dp_id_verifychecksum").click(function(e){
+        var receivedString = $("#_2dp_text_Area_received_Data").val();
+        
+        var flag = _2dp_vefify(receivedString);
+        if(flag==true){
+            showAlert("_2dp_checksum_acceptance",acceptAlert);
+        }
+        else{
+            showAlert("_2dp_checksum_acceptance",rejectAlert);
+        }
+
+    });
+
+    
 
 });
 
@@ -375,4 +416,37 @@ function addingRowAndColumnParity(arrofStr){
     //console.log(augumented_Arr);
     return global.augumented_Arr = augumented_Arr;
     
+}
+
+function _2dp_vefify(receivedString){
+    var flag = true;
+    //For Row Parity Check
+    var arr = receivedString.split(',');
+    for(var i in arr){//Including the Last row i.e. row of column parities
+        //console.log(global.augumented_Arr[i].substring(0,8));
+        //console.log(global.augumented_Arr[i][8]);
+        if(count_char(arr[i].substring(0,8),'1')%2 != parseInt(arr[i][8])){
+            flag = false;
+            return flag;
+        }
+    }
+    //For Column parity Check
+    for(var col=0;col<9;col++){//string length becomes 9
+        var tempstr = '';
+        for(var i =0;i<arr.length-1;i++){//leaving the last row
+            tempstr = tempstr + arr[i][col];
+
+        }
+        if(count_char(tempstr,'1')%2 != parseInt(arr[arr.length -1][col])){
+            flag = false;
+            return flag;
+        }
+
+    }
+    return flag;
+
+}
+
+function showAlert(id,msg){
+    $(("#"+id)).html(msg);
 }
