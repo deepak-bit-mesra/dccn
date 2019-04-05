@@ -11,6 +11,7 @@ $(document).ready(function(){
     global.segment_number=1;
     global._2dp_segment_number=1;
     global.checksumArr = ['10011001','11100010','00100100','10000100'];
+    global._crc_Data ={dividend:"100100",key:"1101"};
 
     /*****************  Events  ************************/
     $("#id_sender-cpb").click(function(){
@@ -212,7 +213,64 @@ $(document).ready(function(){
 
     });
 
-    
+
+    /* --------------------------------------------------- */
+    /* --------------------------------------------------- */
+    /*
+    *
+    *       
+    *       2D parity ENDED
+    *       CRC STARTED
+    * 
+    * 
+    * 
+    * 
+    * */
+
+    $("#_crc_id_Dividend,#_crc_id_key").keypress(function(e){
+        if(e.which !== 49 && e.which!== 48){
+            //console.log("nothing");
+            e.preventDefault();
+        }
+        if(e.which === 13){
+            console.log("Enter Pressed");
+            //_2dp_add_to_original_data_array();
+            
+
+        }
+    });
+
+    $("#_crc_continue").click(function(e){
+        var dividend = $("#_crc_id_Dividend").val();
+        var key = $("#_crc_id_key").val();
+        var sent_data = crc_Send_Data(dividend,key);
+        $("#_crc_card-body-para").text(sent_data);
+
+    });
+
+    $("#_crc_send_Data").click(function (e) {
+        var temp = $("#_crc_card-body-para").text();
+        $("#_crc_text_Area_received_Data").val(temp);
+        $("#_crc_received_Key").text($("#_crc_id_key").val());
+        $("#_crc_id_verifychecksum,#_crc_checksum_add_noise").prop("disabled",false);
+
+    });
+
+    $("#_crc_id_verifychecksum").click(function(e){
+        var dividend = $("#_crc_text_Area_received_Data").val();
+        var key = $("#_crc_received_Key").text();
+        if(crc_Receive_Data(dividend,key)){
+            showAlert("_crc_checksum_acceptance",acceptAlert);
+        }
+        else{
+            showAlert("_crc_checksum_acceptance",rejectAlert);
+        }
+    });
+
+
+    $("#_crc_checksum_add_noise").click(function(e){
+        $("#_crc_text_Area_received_Data").prop("disabled",false);
+    });
 
 });
 
@@ -259,194 +317,3 @@ $(document).ready(function(){
 *
 
 */
-
-
-
-function count_char(str,char){
-    var count = 0;
-    var x;
-    for(x in str){
-        if(str[x] === char){
-            count++;
-        }
-    }
-    return count; 
-    
-}
-/* --------------------------------------------------- */
-function add_to_original_data_array(){
-    var temp = $("#id_bin_entries").val();
-    //debugger;
-    temp = get_8_bit_binary_from_str(temp);
-    global.original_data.push(temp);
-
-    //Just TExt Changes
-    $("#id_bin_entries").val("");
-    $("#card-body-para").text(global.original_data.toString());
-    var sg_num_span = $("#seg_num");
-    sg_num_span.text("(k=" + (++global.segment_number) +")");
-    var m = "<BR>m = 8";
-    $("#k_and_m").html("k = " + (global.segment_number - 1) + m);
-    global.checksum_SentData = checksum(global.original_data);
-    $("#sender_sum").html("Sum = "+global.checksum_SentData.sum+"<BR>CheckSum = "+global.checksum_SentData.checksum);
-}
-/* --------------------------------------------------- */
-function parse_binaryInt(str){
-    return parseInt(str,2);
-}
-/* --------------------------------------------------- */
-
-/* --------------------------------------------------- */
-function get_8_bit_binary(num){
-    var concatinated_str = '00000000' + num.toString(2);
-    var last8bits = concatinated_str.substr(-8);//last 8 characters of string
-    return last8bits;
-}
-/* --------------------------------------------------- */
-function get_8_bit_binary_from_str(str){
-    var concatinated_str = '00000000' + str;
-    var last8bits = concatinated_str.substr(-8);//last 8 characters of string
-    return last8bits;
-}
-/* --------------------------------------------------- */
-function checksum_Addition(a,b){
-    //This Function will take 2 numbers of 8 bits
-    // Add them . If there is 1 extra bit,It means that
-    // we have to subtract the value of 9th bit from left i.e. 256
-    // then Add 1 to the sum and return that.
-    x = parse_binaryInt(a);
-    y = parse_binaryInt(b);
-    var ans = (x+y)%255;
-    //If there is 9th bit 
-    // removed 9th bit and then added it.
-    // % operator is used because it will remove the 9th bit
-    // As well as add it to the sum
-    console.log("In checksum_Addition");
-    console.log("a = ",a);
-    console.log("b = ",b);
-    console.log("ans = ",get_8_bit_binary(ans));
-    return get_8_bit_binary(ans);
-}
-/* --------------------------------------------------- */
-function checksum(bin_data_arr){
-    
-    var len = bin_data_arr.length;
-    var i=0;
-    var sum = get_8_bit_binary(0);
-    $.each(bin_data_arr,function(index,value){
-        sum = checksum_Addition(sum,value);
-    });
-    var checksum = bitwise_NOT(sum);
-    return {"sum":sum,"checksum":checksum};
-}
-/* --------------------------------------------------- */
-
-function bitwise_NOT(str_8_bit){
-    var ans = ['0','0','0','0','0','0','0','0'];
-    var len = str_8_bit.length;
-    
-    for(var i=0;i<len;i++){
-        if(str_8_bit[i]=='1')
-            ans[i]='0';
-        else
-            ans[i] = '1';
-    }
-    return ans.join('');
-}
-/* --------------------------------------------------- */
-function str_to_array(str){
-    var arr = str.split(',');
-    function trimComma(value){
-        return value!='';
-    }
-    arr= arr.filter(trimComma);
-    return arr;
-}
-/* --------------------------------------------------- */
-function _2dp_add_to_original_data_array(){
-    var temp = $("#_2dp_id_bin_entries").val();
-    //debugger;
-    temp = get_8_bit_binary_from_str(temp);
-    global._2dp_original_data.push(temp);
-    
-    //Just TExt Changes
-    $("#_2dp_id_bin_entries").val("");
-    $("#_2dp_card-body-para").text(global._2dp_original_data.toString());
-    var sg_num_span = $("#_2dp_seg_num");
-    sg_num_span.text("(k=" + (++global._2dp_segment_number) +")");
-    var m = "<BR>m = 8";
-    $("#_2dp_k_and_m").html("k = " + (global._2dp_segment_number - 1) + m);
-    //global._2dp_checksum_SentData = checksum(global._2dp_original_data);
-    //$("#_2dp_sender_sum").html("Sum = "+global._2dp_checksum_SentData.sum+"<BR>CheckSum = "+global._2dp_checksum_SentData.checksum);
-}
-
-function addingRowAndColumnParity(arrofStr){
-    debugger;
-    var len = arrofStr.length;
-    var augumented_Arr = new Array(len);
-    //Adding Row Parity
-    
-    for (var i in arrofStr) {
-        console.log(arrofStr[i]);
-        if (count_char(arrofStr[i], '1') % 2 == 0) {
-            augumented_Arr[i] = arrofStr[i] + '0';
-        }
-        else {
-            augumented_Arr[i] = arrofStr[i] + '1';
-        }
-
-    }
-    //Adding Column Parity (The Last Row)
-    //debugger;
-    var tempColumnArr = [];
-    for(var col=0;col<9;col++){//string length becomes 9
-        var tempstr = '';
-        for(i in augumented_Arr){
-            tempstr = tempstr + augumented_Arr[i][col];
-        }
-        
-        tempColumnArr[col] = ''+count_char(tempstr,'1')%2;
-        //debugger;
-        //console.log("tempcolArr ",tempColumnArr);
-        
-        
- 
-    }
-    augumented_Arr[augumented_Arr.length] = tempColumnArr.join('');
-    //console.log(augumented_Arr);
-    return global.augumented_Arr = augumented_Arr;
-    
-}
-
-function _2dp_vefify(receivedString){
-    var flag = true;
-    //For Row Parity Check
-    var arr = receivedString.split(',');
-    for(var i in arr){//Including the Last row i.e. row of column parities
-        //console.log(global.augumented_Arr[i].substring(0,8));
-        //console.log(global.augumented_Arr[i][8]);
-        if(count_char(arr[i].substring(0,8),'1')%2 != parseInt(arr[i][8])){
-            flag = false;
-            return flag;
-        }
-    }
-    //For Column parity Check
-    for(var col=0;col<9;col++){//string length becomes 9
-        var tempstr = '';
-        for(var i =0;i<arr.length-1;i++){//leaving the last row
-            tempstr = tempstr + arr[i][col];
-
-        }
-        if(count_char(tempstr,'1')%2 != parseInt(arr[arr.length -1][col])){
-            flag = false;
-            return flag;
-        }
-
-    }
-    return flag;
-
-}
-
-function showAlert(id,msg){
-    $(("#"+id)).html(msg);
-}
