@@ -293,5 +293,6 @@ function crc_Receive_Data(div,key){
         return true;
     }
     console.log("Rejected");
+    
     return false;
 }
