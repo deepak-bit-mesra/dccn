@@ -280,7 +280,8 @@ function AddPrefix(char,len,targetString){
 function crc_Send_Data(div,key){
     var m = key.length;
     var ori_div = div;
-    var div = (parseInt(div,2) << (m-1)).toString(2);//Adding m-1 Zeroes. say 288
+    div = div + '0'.repeat(m-1);//Adding m-1 Zeroes. say 288
+
     var send_data = ori_div + crc_Division_Remainder(div,key);
     return send_data;
 }
