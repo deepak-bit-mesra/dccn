@@ -1,13 +1,90 @@
 
 
-body{
-    
+*{
+    font-family: 'Montserrat', sans-serif;
 
 }
 
+body{
+    margin: 0px;
+    padding: 0px;
+
+}
+.Acknowlwdgement{
+    font-weight: 100;
+}
+.dancing{
+    font-family: 'Dancing Script', cursive;
+}
+.pacifico{
+    font-family: 'Pacifico', cursive;
+}
+.sacramento{
+    font-family: 'Sacramento', cursive;
+}
+.signature{
+    font-size: xx-large;
+    text-align: right;
+}
+.Ack_body{
+    background: antiquewhite;
+}
+.ack-head{
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 3rem auto 3rem auto;
+    text-align: center;
+    font-size: 3.5rem;
+}
+page {
+    background: white;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5cm;
+    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+  }
+page[size="A4"] {  
+    width: 21cm;
+    height: 29.7cm; 
+  }
+.x-large-font{
+    font-size: x-large;
+}
+.compilation {
+    background: rgba(0,0,0,.03);
+    color: BLACK;
+    font-weight: 600;
+    border-left: 19px black;
+    border-right: 19px black;
+    border-style: double;
+    padding-left: 10px;
+}
+.compied-by{
+    
+}
+.obliq{
+    font-style: oblique;
+    text-transform: capitalize;
+}
+.heading{
+    text-decoration: underline;
+    text-transform: uppercase;
+    text-align: center;
+}
+.dropcap {
+    float: left;
+    font-family: Georgia;
+    font-size: 75px;
+    color: darkmagenta;
+    padding: 0px 3px 3px 3px;
+    line-height: 68px;
+}
 .sender-form{
     
     padding: 15px;
+}
+.capitalize{
+    text-transform: capitalize;
 }
 .bg-grey{
     background-color: #f2f2f2;

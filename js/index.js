@@ -1,6 +1,10 @@
 "use strict";
 
 var global={};
+
+
+
+
 $(document).ready(function(){
     //----------------------------GLOBALS-------------------------------------------------
     var acceptAlert = "<div class='alert text-center alert-success'><strong>ACCEPTED !!!</strong> </div>";
@@ -12,6 +16,16 @@ $(document).ready(function(){
     global._2dp_segment_number=1;
     global.checksumArr = ['10011001','11100010','00100100','10000100'];
     global._crc_Data ={dividend:"100100",key:"1101"};
+
+
+    $("#myModal").on('show.bs.modal',function(){
+        console.log("On show");
+        var ack_div_modal = $("#Acknowledgement");
+        ack_div_modal.load("pages/Acknowledgement.htm");
+    });
+    //var ack_div_modal = $("#Acknowledgement");
+    //ack_div_modal.load("pages/Acknowledgement.htm");
+
 
     /*****************  Events  ************************/
     $("#id_sender-cpb").click(function(){

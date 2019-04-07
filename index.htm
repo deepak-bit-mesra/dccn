@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Montserrat|Pacifico|Sacramento" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
     <script src="js/functions.js"></script>
@@ -17,113 +17,105 @@
 </head>
 <body>
 
-<div class="container-fluid body">
-    <ul class="nav nav-tabs nav-level-1">
-        <li class="nav-item">
-            <a class="nav-link " data-toggle="tab" href="#id_checksum">Checksum</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#id_parity1d">1 D Parity</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#id_parity2d">2 D Parity</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#id_crc">CRC</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#id_shannon">Shannon</a>
-        </li>
-    </ul>
-    <div class="tab-content level-1">
-        <div class="tab-pane fade level-2-wrapper" id="id_checksum">
-            <div class="card">
-                <div class="card-header">
-                    <a  href="#about_checksum" data-toggle="collapse" class="card-link">
-                        <h3 class="form-head">Checksum</h3>
-                    </a>
-                </div>
-                <div id="about_checksum" class="collapse show">
-                    <div class="card-body">
-                        <div class="jumbotron jumbotron-fluid">
-                            <div class="container">
-                                <h2> Checksum </h2> 
-                                <p>Blocks of data from the source are subjected to a check bit or parity bit generator form, where a parity of :
-                                    <ul type="disk">
-                                        <li>
-                                            In checksum error detection scheme, the data is divided into k segments each of m bits.
-                                        </li>
-                                        <li>
-                                            In the sender’s end the segments are added using 1’s complement arithmetic to get the sum. The sum is complemented to get the checksum.
-                                        </li>
-                                        <li>
-                                            The checksum segment is sent along with the data segments.
-                                        </li>
-                                        <li>
-                                            At the receiver’s end, all received segments are added using 1’s complement arithmetic to get the sum. The sum is complemented.
-                                        </li>
-                                        <li>
-                                            If the result is zero, the received data is accepted; otherwise discarded.
-                                        </li>
-                                    </ul>
-                                    
-                                </p>
-                                <img class="img-fluid center" src="assets/checksum.jpg">
-            
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
-            </div>
-            <div class="row">
-                <div class="card col-sm-12 col-md-12 col-lg-6 enter-the-segment">
+<div class="container-fluid  body">
+
+    <div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid p-1">
+            <h1 class="display-4 heading">Error Detection</h1>
+            <p class="lead">Its Implemantation in Data Communication And Networking</p>
+            <p class="compilation">
+                <span class="compiled-by">
+                    Compiled By :- <a class="obliq">Deepak Kumar (MCA/10036/17)</a>
+
+                </span>
+                <br>
+                <span class="submitted-to">
+                    Submitted To :- <a class="obliq">dr. subrajeet mohapatra  </a>
+                </span>
+                <br>
+                <span class="Acknowlwdgement" >
+                    <a class="nav-link" data-toggle="modal" href="#myModal" >
+                        Click Here for Acknowledgement ....
+                    </a>
+                </span>
+            </p>
+            
+            
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <ul class="nav nav-tabs nav-level-1">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#id_checksum">Checksum</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#id_parity1d">1 D Parity</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#id_parity2d">2 D Parity</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#id_crc">CRC</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link " data-toggle="tab" href="#id_shannon">Shannon</a>
+            </li> -->
+        </ul>
+        <div class="tab-content level-1">
+            <div class="tab-pane fade show active level-2-wrapper" id="id_checksum">
+                <div class="card">
                     <div class="card-header">
-                        <a class="card-link" data-toggle="collapse" href="#collapseOne">
-                            <h3 class="form-head">SENDER</h3>
+                        <a  href="#about_checksum" data-toggle="collapse" class="card-link">
+                            <h3 class="form-head">Checksum</h3>
                         </a>
                     </div>
-                    <div id="collapseOne" class="collapse show" >
+                    <div id="about_checksum" class="collapse show">
                         <div class="card-body">
-                            <form>
-                                
-                                <div class="form-group dispnone row">
-                                    <label class="col-sm-12 col-lg-3">Segments : </label>
-                                    <input type="number" min="4" max="4" id="id_segment" class="form-control col-sm-12 col-lg-3" >
+                            <div class="jumbotron jumbotron-fluid">
+                                <div class="container">
+                                    <h2> Checksum </h2> 
+                                    <p>Blocks of data from the source are subjected to a check bit or parity bit generator form, where a parity of :
+                                        <ul type="disk">
+                                            <li>
+                                                In checksum error detection scheme, the data is divided into k segments each of m bits.
+                                            </li>
+                                            <li>
+                                                In the sender’s end the segments are added using 1’s complement arithmetic to get the sum. The sum is complemented to get the checksum.
+                                            </li>
+                                            <li>
+                                                The checksum segment is sent along with the data segments.
+                                            </li>
+                                            <li>
+                                                At the receiver’s end, all received segments are added using 1’s complement arithmetic to get the sum. The sum is complemented.
+                                            </li>
+                                            <li>
+                                                If the result is zero, the received data is accepted; otherwise discarded.
+                                            </li>
+                                        </ul>
+                                        
+                                    </p>
+                                    <img class="img-fluid center" src="assets/checksum.jpg">
+                
                                 </div>
-                                <div class="form-group dispnone row">
-                                    <label class="col-sm-12 col-lg-3">Number of Bits : </label>
-                                    <input type="number" min="8" max="8" id="id_num_bits" class="form-control col-sm-12 col-lg-3">
-                                </div>
-                                <div class="form-group dispnone row">
-                                    <button type="button"  class="btn btn-primary" id="continue">Continue</button>
-                                </div>
-                                <div class="form-group row">
-                                    <label  class=" col-sm-12 col-md-4 col-lg-3">Segment Number : <span id="seg_num">1</span> </label>
-                                    <input  class="form-control col-sm-12 col-md-6  col-lg-6 no-right-radius binary-input" type="text" maxlength="8" id="id_bin_entries">
-                                    <button type="button" class="btn btn-primary col-sm-12 col-md-2 no-left-radius " id="id_nextbtn">Next &rarr;</button>
-                                </div>
-                            </form>
-                            <p id="k_and_m"></p>
-                            <p id="card-body-para" class="overflow-para"></p>
-                            <p id="sender_sum"></p>
-                            <button class="btn btn-success" id="send_checksum">Send</button>
+                            </div>
                         </div>
+
                     </div>
-
-
                 </div>
-
-                <div class="card col-sm-12 col-md-12 col-lg-6 enter-the-segment">
-                    <div class="card enter-the-segment">
+                <div class="row">
+                    <div class="card col-sm-12 col-md-12 col-lg-6 enter-the-segment">
                         <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#collapseFour">
-                                <h3 class="form-head">RECEIVER</h3>
+                            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                                <h3 class="form-head">SENDER</h3>
                             </a>
                         </div>
-                        <div id="collapseFour" class="collapse show" >
+                        <div id="collapseOne" class="collapse show" >
                             <div class="card-body">
                                 <form>
+                                    
                                     <div class="form-group dispnone row">
                                         <label class="col-sm-12 col-lg-3">Segments : </label>
                                         <input type="number" min="4" max="4" id="id_segment" class="form-control col-sm-12 col-lg-3" >
@@ -136,279 +128,275 @@
                                         <button type="button"  class="btn btn-primary" id="continue">Continue</button>
                                     </div>
                                     <div class="form-group row">
-                                        <p >
-                                            Received CheckSum :- 
-                                            <span id="received_Checksum"></span>
-                                        </p>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="received_Data">Received Data :-</label> 
-                                        <textarea class="form-control" rows="5" id="text_Area_received_Data" name="text"></textarea>
-                                    </div>
-                                    <div class="form-group row">
-                                        <button type="button" class="btn btn-primary  col-6 " disabled id="id_verifychecksum">Verify Checksum</button>
-                                        <button type="button" class="btn btn-warning  col-6 " disabled id="checksum_add_noise">Add Noise</button>
+                                        <label  class=" col-sm-12 col-md-4 col-lg-3">Segment Number : <span id="seg_num">1</span> </label>
+                                        <input  class="form-control col-sm-12 col-md-6  col-lg-6 no-right-radius binary-input" type="text" maxlength="8" id="id_bin_entries">
+                                        <button type="button" class="btn btn-primary col-sm-12 col-md-2 no-left-radius " id="id_nextbtn">Next &rarr;</button>
                                     </div>
                                 </form>
+                                <p id="k_and_m"></p>
+                                <p id="card-body-para" class="overflow-para"></p>
+                                <p id="sender_sum"></p>
+                                <button class="btn btn-success" id="send_checksum">Send</button>
                             </div>
                         </div>
+
+
                     </div>
-            
-                    <div class="card original-data">
-                        <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#collapseThree">
-                                    <h3 class="form-head">RESULT</h3>
-                            </a>
-                        </div>
-                        <div id="collapseThree" class="collapse show">
-                            <div class="card-body">
-                                <div class="container-fluid" id="checksum_acceptance">
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-        <div class="tab-pane fade level-2-wrapper "  id="id_parity1d">
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                    <h2> Simple Parity check </h2> 
-                    <p>Blocks of data from the source are subjected to a check bit or parity bit generator form, where a parity of :
-                        <ul type="disk">
-                            <li>
-                                1 is added to the block if it contains odd number of 1’s, and
-                            </li>
-                            <li>
-                                0 is added if it contains even number of 1’s
-                            </li>
-                        </ul>
-                        This scheme makes the total number of 1’s even, that is why it is called even parity checking.
-                    </p>
-
-                </div>
-            </div>
-            <ul class="nav nav-pills checksum-nav nav-level-2">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" id="id_even_parity_tab" href="#id_evenparity">Even Parity</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" id="id_odd_parity_tab" href="#id_evenparity">Odd Parity</a>
-                </li>
-            </ul>
-            <div class="tab-content level-2">
-                <div class="tab-pane fade active show" id="id_evenparity">
-                    <div class="row even-parity-row">
-                        <div class="container-fluid sender col-sm-12 col-md-6">
-                            <form action="" class="sender-form bg-grey">
-                                <h3 class="form-head">SENDER</h3>
-                                <div class="form-group">
-                                    <label for="even-parity-input">Enter Binary String to send</label>
-                                    <input class="form-control binary-input" id="id_even-parity-input" autofocus="" required="" type="number" placeholder="binary eg.101010">
-                                </div>
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-primary" id="id_sender-cpb">Compute Parity Bit</button>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control binary-input" id="id_even-parity-output" autofocus="" required="" disabled type=" number" placeholder="">
-                                </div>
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-primary" id="id_add-noise">Add Noise</button>
-                                    <button type="button" class="btn btn-success" id="id_send">Send</button>
-                                </div>
-
-                            </form>
-
-
-                        </div>
-                        <div class="container-fluid receiver col-sm-12 col-md-6">
-                            <form action="" class="sender-form bg-grey">
+                    <div class="card col-sm-12 col-md-12 col-lg-6 enter-the-segment">
+                        <div class="card enter-the-segment">
+                            <div class="card-header">
+                                <a class="card-link" data-toggle="collapse" href="#collapseFour">
                                     <h3 class="form-head">RECEIVER</h3>
-                                <div class="form-group">
-                                    <label for="even-parity-input">Data Received</label>
-                                    <input class="form-control" disabled id="id_receiver-even-parity-input" autofocus="" required="" type="number" placeholder="binary eg.101010">
+                                </a>
+                            </div>
+                            <div id="collapseFour" class="collapse show" >
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-group dispnone row">
+                                            <label class="col-sm-12 col-lg-3">Segments : </label>
+                                            <input type="number" min="4" max="4" id="id_segment" class="form-control col-sm-12 col-lg-3" >
+                                        </div>
+                                        <div class="form-group dispnone row">
+                                            <label class="col-sm-12 col-lg-3">Number of Bits : </label>
+                                            <input type="number" min="8" max="8" id="id_num_bits" class="form-control col-sm-12 col-lg-3">
+                                        </div>
+                                        <div class="form-group dispnone row">
+                                            <button type="button"  class="btn btn-primary" id="continue">Continue</button>
+                                        </div>
+                                        <div class="form-group row">
+                                            <p >
+                                                Received CheckSum :- 
+                                                <span id="received_Checksum"></span>
+                                            </p>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="received_Data">Received Data :-</label> 
+                                            <textarea class="form-control" rows="5" id="text_Area_received_Data" name="text"></textarea>
+                                        </div>
+                                        <div class="form-group row">
+                                            <button type="button" class="btn btn-primary  col-6 " disabled id="id_verifychecksum">Verify Checksum</button>
+                                            <button type="button" class="btn btn-warning  col-6 " disabled id="checksum_add_noise">Add Noise</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-primary" id="id_receiver-cpb">Compute Parity Bit</button>
-                                </div>
-                                <div class="form-group">
-                                    <div class="container-fluid" id="acceptance">
+                            </div>
+                        </div>
+                
+                        <div class="card original-data">
+                            <div class="card-header">
+                                <a class="card-link" data-toggle="collapse" href="#collapseThree">
+                                        <h3 class="form-head">RESULT</h3>
+                                </a>
+                            </div>
+                            <div id="collapseThree" class="collapse show">
+                                <div class="card-body">
+                                    <div class="container-fluid" id="checksum_acceptance">
                                         
                                     </div>
                                 </div>
-                                
-
-                            </form>
+                            </div>
                         </div>
                     </div>
-
+                    
                 </div>
                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
-        </div>
+            <div class="tab-pane fade level-2-wrapper "  id="id_parity1d">
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h2> Simple Parity check </h2> 
+                        <p>Blocks of data from the source are subjected to a check bit or parity bit generator form, where a parity of :
+                            <ul type="disk">
+                                <li>
+                                    1 is added to the block if it contains odd number of 1’s, and
+                                </li>
+                                <li>
+                                    0 is added if it contains even number of 1’s
+                                </li>
+                            </ul>
+                            This scheme makes the total number of 1’s even, that is why it is called even parity checking.
+                        </p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <div class="tab-pane  fade" id="id_parity2d">
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                    <h2> Two-dimensional Parity check </h2> 
-                    <p>
-                        Parity check bits are calculated for each row, which is equivalent to a simple parity check bit. Parity check bits are also calculated for all columns, 
-                        then both are sent along with the data. At the receiving end these are compared with the parity bits calculated on the received data. 
-                    </p>
-                    <img class="img-fluid center" src="assets/Two Dimension Parity.jpg">
-                </div>
-            </div>
-            <div class="row">
-                <div class="card col-sm-12 col-md-12 col-lg-6 enter-the-segment">
-                    <div class="card-header">
-                        <a class="card-link" data-toggle="collapse" href="#collapseOne">
-                            <h3 class="form-head">SENDER</h3>
-                        </a>
                     </div>
-                    <div id="_2dp_collapseOne" class="collapse show">
-                        <div class="card-body">
-                            <form>
-            
-                                <div class="form-group dispnone row">
-                                    <label class="col-sm-12 col-lg-3">Segments : </label>
-                                    <input type="number" min="4" max="4" id="_2dp_id_segment"
-                                        class="form-control col-sm-12 col-lg-3">
-                                </div>
-                                <div class="form-group dispnone row">
-                                    <label class="col-sm-12 col-lg-3">Number of Bits : </label>
-                                    <input type="number" min="8" max="8" id="_2dp_id_num_bits"
-                                        class="form-control col-sm-12 col-lg-3">
-                                </div>
-                                <div class="form-group dispnone row">
-                                    <button type="button" class="btn btn-primary" id="_2dp_continue">Continue</button>
-                                </div>
-                                <div class="form-group row">
-                                    <label class=" col-sm-12 col-md-4 col-lg-3">Segment Number : <span id="_2dp_seg_num">1</span>
-                                    </label>
-                                    <input class="form-control col-sm-12 col-md-6  col-lg-6 no-right-radius binary-input"
-                                        type="text" maxlength="8" id="_2dp_id_bin_entries" placeholder="Enter 8 bit data">
-                                    <button type="button" class="btn btn-primary col-sm-12 col-md-2 no-left-radius "
-                                        id="_2dp_id_nextbtn">Next &rarr;</button>
-                                </div>
-                            </form>
-                            <p id="_2dp_k_and_m"></p>
-                            <p id="_2dp_card-body-para" class="overflow-para"></p>
-                            <p id="_2dp_sender_sum"></p>
-                            <button class="btn btn-success" id="_2dp_send_checksum">Send</button>
+                </div>
+                <ul class="nav nav-pills checksum-nav nav-level-2">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" id="id_even_parity_tab" href="#id_evenparity">Even Parity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" id="id_odd_parity_tab" href="#id_evenparity">Odd Parity</a>
+                    </li>
+                </ul>
+                <div class="tab-content level-2">
+                    <div class="tab-pane fade active show" id="id_evenparity">
+                        <div class="row even-parity-row">
+                            <div class="container-fluid sender col-sm-12 col-md-6">
+                                <form action="" class="sender-form bg-grey">
+                                    <h3 class="form-head">SENDER</h3>
+                                    <div class="form-group">
+                                        <label for="even-parity-input">Enter Binary String to send</label>
+                                        <input class="form-control binary-input" id="id_even-parity-input" autofocus="" required="" type="number" placeholder="binary eg.101010">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary" id="id_sender-cpb">Compute Parity Bit</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control binary-input" id="id_even-parity-output" autofocus="" required="" disabled type=" number" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary" id="id_add-noise">Add Noise</button>
+                                        <button type="button" class="btn btn-success" id="id_send">Send</button>
+                                    </div>
+
+                                </form>
+
+
+                            </div>
+                            <div class="container-fluid receiver col-sm-12 col-md-6">
+                                <form action="" class="sender-form bg-grey">
+                                        <h3 class="form-head">RECEIVER</h3>
+                                    <div class="form-group">
+                                        <label for="even-parity-input">Data Received</label>
+                                        <input class="form-control" disabled id="id_receiver-even-parity-input" autofocus="" required="" type="number" placeholder="binary eg.101010">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary" id="id_receiver-cpb">Compute Parity Bit</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="container-fluid" id="acceptance">
+                                            
+                                        </div>
+                                    </div>
+                                    
+
+                                </form>
+                            </div>
                         </div>
+
                     </div>
-            
+                    
                 </div>
-            
-                <div class="card col-sm-12 col-md-12 col-lg-6 enter-the-segment">
-                    <div class="card enter-the-segment">
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="tab-pane  fade" id="id_parity2d">
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h2> Two-dimensional Parity check </h2> 
+                        <p>
+                            Parity check bits are calculated for each row, which is equivalent to a simple parity check bit. Parity check bits are also calculated for all columns, 
+                            then both are sent along with the data. At the receiving end these are compared with the parity bits calculated on the received data. 
+                        </p>
+                        <img class="img-fluid center" src="assets/Two Dimension Parity.jpg">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card col-sm-12 col-md-12 col-lg-6 enter-the-segment">
                         <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#collapseFour">
-                                <h3 class="form-head">RECEIVER</h3>
+                            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                                <h3 class="form-head">SENDER</h3>
                             </a>
                         </div>
-                        <div id="_2dp_collapseFour" class="collapse show">
+                        <div id="_2dp_collapseOne" class="collapse show">
                             <div class="card-body">
                                 <form>
+                
                                     <div class="form-group dispnone row">
                                         <label class="col-sm-12 col-lg-3">Segments : </label>
                                         <input type="number" min="4" max="4" id="_2dp_id_segment"
@@ -423,255 +411,321 @@
                                         <button type="button" class="btn btn-primary" id="_2dp_continue">Continue</button>
                                     </div>
                                     <div class="form-group row">
-                                        <p class="d-none">
-                                            Received CheckSum :-
-                                            <span id="_2dp_received_Checksum"></span>
-                                        </p>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="received_Data">Received Data :-</label>
-                                        <textarea class="form-control" disabled rows="5" id="_2dp_text_Area_received_Data"
-                                            name="text"></textarea>
-                                    </div>
-                                    <div class="form-group row">
-                                        <button type="button" class="btn btn-primary  col-6 " disabled
-                                            id="_2dp_id_verifychecksum">Verify Checksum</button>
-                                        <button type="button" class="btn btn-warning  col-6 " disabled
-                                            id="_2dp_checksum_add_noise">Add Noise</button>
+                                        <label class=" col-sm-12 col-md-4 col-lg-3">Segment Number : <span id="_2dp_seg_num">1</span>
+                                        </label>
+                                        <input class="form-control col-sm-12 col-md-6  col-lg-6 no-right-radius binary-input"
+                                            type="text" maxlength="8" id="_2dp_id_bin_entries" placeholder="Enter 8 bit data">
+                                        <button type="button" class="btn btn-primary col-sm-12 col-md-2 no-left-radius "
+                                            id="_2dp_id_nextbtn">Next &rarr;</button>
                                     </div>
                                 </form>
+                                <p id="_2dp_k_and_m"></p>
+                                <p id="_2dp_card-body-para" class="overflow-para"></p>
+                                <p id="_2dp_sender_sum"></p>
+                                <button class="btn btn-success" id="_2dp_send_checksum">Send</button>
+                            </div>
+                        </div>
+                
+                    </div>
+                
+                    <div class="card col-sm-12 col-md-12 col-lg-6 enter-the-segment">
+                        <div class="card enter-the-segment">
+                            <div class="card-header">
+                                <a class="card-link" data-toggle="collapse" href="#collapseFour">
+                                    <h3 class="form-head">RECEIVER</h3>
+                                </a>
+                            </div>
+                            <div id="_2dp_collapseFour" class="collapse show">
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-group dispnone row">
+                                            <label class="col-sm-12 col-lg-3">Segments : </label>
+                                            <input type="number" min="4" max="4" id="_2dp_id_segment"
+                                                class="form-control col-sm-12 col-lg-3">
+                                        </div>
+                                        <div class="form-group dispnone row">
+                                            <label class="col-sm-12 col-lg-3">Number of Bits : </label>
+                                            <input type="number" min="8" max="8" id="_2dp_id_num_bits"
+                                                class="form-control col-sm-12 col-lg-3">
+                                        </div>
+                                        <div class="form-group dispnone row">
+                                            <button type="button" class="btn btn-primary" id="_2dp_continue">Continue</button>
+                                        </div>
+                                        <div class="form-group row">
+                                            <p class="d-none">
+                                                Received CheckSum :-
+                                                <span id="_2dp_received_Checksum"></span>
+                                            </p>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="received_Data">Received Data :-</label>
+                                            <textarea class="form-control" disabled rows="5" id="_2dp_text_Area_received_Data"
+                                                name="text"></textarea>
+                                        </div>
+                                        <div class="form-group row">
+                                            <button type="button" class="btn btn-primary  col-6 " disabled
+                                                id="_2dp_id_verifychecksum">Verify Checksum</button>
+                                            <button type="button" class="btn btn-warning  col-6 " disabled
+                                                id="_2dp_checksum_add_noise">Add Noise</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="card original-data">
+                            <div class="card-header">
+                                <a class="card-link" data-toggle="collapse" href="#_2dp_collapseThree">
+                                    <h3 class="form-head">RESULT</h3>
+                                </a>
+                            </div>
+                            <div id="_2dp_collapseThree" class="collapse show">
+                                <div class="card-body">
+                                    <div class="container-fluid" id="_2dp_checksum_acceptance">
+                
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-            
-                    <div class="card original-data">
-                        <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#_2dp_collapseThree">
-                                <h3 class="form-head">RESULT</h3>
-                            </a>
-                        </div>
-                        <div id="_2dp_collapseThree" class="collapse show">
-                            <div class="card-body">
-                                <div class="container-fluid" id="_2dp_checksum_acceptance">
-            
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            
-            </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <div class="tab-pane  fade" id="id_crc">
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                    <h2> Cyclic Redundancy Check </h2> 
-                    <p>
-                        CRC or Cyclic Redundancy Check is a method of detecting accidental changes/errors in communication channel
-                    </p>
-                    <img class="img-fluid center" src="assets/crc_Sender.jpg">
+                
                 </div>
             </div>
-            <div class="row">
-                <div class="card col-sm-12 col-md-12 col-lg-6 enter-the-segment">
-                    <div class="card-header">
-                        <a class="card-link" data-toggle="collapse" href="#collapseOne">
-                            <h3 class="form-head">SENDER</h3>
-                        </a>
-                    </div>
-                    <div id="_crc_collapseOne" class="collapse show">
-                        <div class="card-body">
-                            <form>
-            
-                                <div class="form-group  row">
-                                    <label class="col-sm-12 col-lg-3">DATA (Dividend) : </label>
-                                    <input type="number" id="_crc_id_Dividend"
-                                        class="form-control col-sm-12 col-lg-9">
-                                </div>
-                                <div class="form-group  row">
-                                    <label class="col-sm-12 col-lg-3">KEY : </label>
-                                    <input type="number" id="_crc_id_key"
-                                        class="form-control col-sm-12 col-lg-9">
-                                </div>
-                                <div class="form-group  row">
-                                    <button type="button" class="btn btn-primary" id="_crc_continue">Continue</button>
-                                </div>
 
-                                <div class="form-group row dispnone">
-                                    <label class=" col-sm-12 col-md-4 col-lg-3">Segment Number : <span id="_crc_seg_num">1</span>
-                                    </label>
-                                    <input class="form-control col-sm-12 col-md-6  col-lg-6 no-right-radius binary-input"
-                                        type="text"  id="_crc_id_bin_entries" placeholder="Enter 8 bit data">
-                                    <button type="button" class="btn btn-primary col-sm-12 col-md-2 no-left-radius "
-                                        id="_crc_id_nextbtn">Next &rarr;</button>
-                                </div>
-                            </form>
-                            <p id="_crc_k_and_m"></p>
-                            <p id="_crc_card-body-para" class="overflow-para"></p>
-                            <p id="_crc_sender_sum"></p>
-                            <button class="btn btn-success" id="_crc_send_Data">Send</button>
-                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="tab-pane  fade" id="id_crc">
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h2> Cyclic Redundancy Check </h2> 
+                        <p>
+                            CRC or Cyclic Redundancy Check is a method of detecting accidental changes/errors in communication channel
+                        </p>
+                        <img class="img-fluid center" src="assets/crc_Sender.jpg">
                     </div>
-            
                 </div>
-            
-                <div class="card col-sm-12 col-md-12 col-lg-6 enter-the-segment">
-                    <div class="card enter-the-segment">
+                <div class="row">
+                    <div class="card col-sm-12 col-md-12 col-lg-6 enter-the-segment">
                         <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#collapseFour">
-                                <h3 class="form-head">RECEIVER</h3>
+                            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                                <h3 class="form-head">SENDER</h3>
                             </a>
                         </div>
-                        <div id="_crc_collapseFour" class="collapse show">
+                        <div id="_crc_collapseOne" class="collapse show">
                             <div class="card-body">
                                 <form>
-                                    <div class="form-group dispnone row">
-                                        <label class="col-sm-12 col-lg-3">Segments : </label>
-                                        <input type="number" min="4" max="4" id="_crc_id_segment"
-                                            class="form-control col-sm-12 col-lg-3">
+                
+                                    <div class="form-group  row">
+                                        <label class="col-sm-12 col-lg-3">DATA (Dividend) : </label>
+                                        <input type="number" id="_crc_id_Dividend"
+                                            class="form-control col-sm-12 col-lg-9">
                                     </div>
-                                    <div class="form-group dispnone row">
-                                        <label class="col-sm-12 col-lg-3">Number of Bits : </label>
-                                        <input type="number" min="8" max="8" id="_crc_id_num_bits"
-                                            class="form-control col-sm-12 col-lg-3">
+                                    <div class="form-group  row">
+                                        <label class="col-sm-12 col-lg-3">KEY : </label>
+                                        <input type="number" id="_crc_id_key"
+                                            class="form-control col-sm-12 col-lg-9">
                                     </div>
-                                    <div class="form-group dispnone row">
+                                    <div class="form-group  row">
                                         <button type="button" class="btn btn-primary" id="_crc_continue">Continue</button>
                                     </div>
-                                    <div class="form-group row">
-                                        <p class="">
-                                            Received Key :-
-                                            <span id="_crc_received_Key"></span>
-                                        </p>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="received_Data">Received Data :-</label>
-                                        <textarea class="form-control" disabled rows="5" id="_crc_text_Area_received_Data"
-                                            name="text"></textarea>
-                                    </div>
-                                    <div class="form-group row">
-                                        <button type="button" class="btn btn-primary  col-6 " disabled
-                                            id="_crc_id_verifychecksum">Verify Checksum</button>
-                                        <button type="button" class="btn btn-warning  col-6 " disabled
-                                            id="_crc_checksum_add_noise">Add Noise</button>
+
+                                    <div class="form-group row dispnone">
+                                        <label class=" col-sm-12 col-md-4 col-lg-3">Segment Number : <span id="_crc_seg_num">1</span>
+                                        </label>
+                                        <input class="form-control col-sm-12 col-md-6  col-lg-6 no-right-radius binary-input"
+                                            type="text"  id="_crc_id_bin_entries" placeholder="Enter 8 bit data">
+                                        <button type="button" class="btn btn-primary col-sm-12 col-md-2 no-left-radius "
+                                            id="_crc_id_nextbtn">Next &rarr;</button>
                                     </div>
                                 </form>
+                                <p id="_crc_k_and_m"></p>
+                                <p id="_crc_card-body-para" class="overflow-para"></p>
+                                <p id="_crc_sender_sum"></p>
+                                <button class="btn btn-success" id="_crc_send_Data">Send</button>
                             </div>
                         </div>
+                
                     </div>
-            
-                    <div class="card original-data">
-                        <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#_crc_collapseThree">
-                                <h3 class="form-head">RESULT</h3>
-                            </a>
+                
+                    <div class="card col-sm-12 col-md-12 col-lg-6 enter-the-segment">
+                        <div class="card enter-the-segment">
+                            <div class="card-header">
+                                <a class="card-link" data-toggle="collapse" href="#collapseFour">
+                                    <h3 class="form-head">RECEIVER</h3>
+                                </a>
+                            </div>
+                            <div id="_crc_collapseFour" class="collapse show">
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-group dispnone row">
+                                            <label class="col-sm-12 col-lg-3">Segments : </label>
+                                            <input type="number" min="4" max="4" id="_crc_id_segment"
+                                                class="form-control col-sm-12 col-lg-3">
+                                        </div>
+                                        <div class="form-group dispnone row">
+                                            <label class="col-sm-12 col-lg-3">Number of Bits : </label>
+                                            <input type="number" min="8" max="8" id="_crc_id_num_bits"
+                                                class="form-control col-sm-12 col-lg-3">
+                                        </div>
+                                        <div class="form-group dispnone row">
+                                            <button type="button" class="btn btn-primary" id="_crc_continue">Continue</button>
+                                        </div>
+                                        <div class="form-group row">
+                                            <p class="">
+                                                Received Key :-
+                                                <span id="_crc_received_Key"></span>
+                                            </p>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="received_Data">Received Data :-</label>
+                                            <textarea class="form-control" disabled rows="5" id="_crc_text_Area_received_Data"
+                                                name="text"></textarea>
+                                        </div>
+                                        <div class="form-group row">
+                                            <button type="button" class="btn btn-primary  col-6 " disabled
+                                                id="_crc_id_verifychecksum">Verify Checksum</button>
+                                            <button type="button" class="btn btn-warning  col-6 " disabled
+                                                id="_crc_checksum_add_noise">Add Noise</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <div id="_crc_collapseThree" class="collapse show">
-                            <div class="card-body">
-                                <div class="container-fluid" id="_crc_checksum_acceptance">
-            
+                
+                        <div class="card original-data">
+                            <div class="card-header">
+                                <a class="card-link" data-toggle="collapse" href="#_crc_collapseThree">
+                                    <h3 class="form-head">RESULT</h3>
+                                </a>
+                            </div>
+                            <div id="_crc_collapseThree" class="collapse show">
+                                <div class="card-body">
+                                    <div class="container-fluid" id="_crc_checksum_acceptance">
+                
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                
                 </div>
-            
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- <div class="tab-pane fade show level-2-wrapper" id="id_shannon">
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container-fluid">
+                        <h1 class="display-3">
+                            Shannon-Fano Encoding
+                        </h1>
+                        <p class="lead">Jumbo helper text</p>
+                        <hr class="my-2">
+                        <img src=" " class="img-fluid dispnone" alt="">
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <form>
+                        <div class="container">
+                            <form>
+                                <div class="form-group row">
+                                    <label for="inputName" class="col-sm-12 col-lg-6 col-form-label"></label>
+                                    <div class="col-sm-12 col-lg-6">
+                                        <input type="text" class="form-control" name="inputName" id="inputName" placeholder="">
+                                        <button class="btn">
+                                                Notification <span class="badge badge-primary"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            -->
         </div>
 
+    </div>
+</div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <div class="tab-pane fade show active level-2-wrapper" id="id_shannon">
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container-fluid">
-                    <h1 class="display-3">
-                        Shannon-Fano Encoding
-                    </h1>
-                    <p class="lead">Jumbo helper text</p>
-                    <hr class="my-2">
-                    <!-- <img src="assets/Shannon-fano.jpg " class="img-fluid dispnone" alt=""> -->
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content" style="background: antiquewhite;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="my-modal-title"></h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>
-            <div class="container-fluid">
-                <form>
-                    <div class="container">
-                        <form>
-                            <div class="form-group row">
-                                <label for="inputName" class="col-sm-12 col-lg-6 col-form-label"></label>
-                                <div class="col-sm-12 col-lg-6">
-                                    <input type="text" class="form-control" name="inputName" id="inputName" placeholder="">
-                                    <button class="btn">
-                                            Notification <span class="badge badge-primary"></span>
-                                    </button>
-                                </div>
-                            </div>
-                            
-                        </form>
-                    </div>
-                </form>
+                <div id="Acknowledgement" class="modal-body">
+                    <p>Content</p>
+                </div>
+                <div class="modal-footer">
+                    
+                </div>
             </div>
         </div>
     </div>
 
-</div>
+
+
 
 </body>
 </html>
