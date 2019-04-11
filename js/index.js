@@ -30,8 +30,9 @@ $(document).ready(function(){
     /*****************  Events  ************************/
     $("#id_sender-cpb").click(function(){
         var inp = $("#id_even-parity-input");
-        inp_str = inp.val();
-        count = count_char(inp_str,'1');
+        var inp_str = inp.val();
+        var computed_str;
+        var count = count_char(inp_str,'1');
         if((count%2 == remainder))
             computed_str= inp_str + '0';
         else
@@ -52,12 +53,12 @@ $(document).ready(function(){
     /* --------------------------------------------------- */
     $("#id_receiver-cpb").click(function(){
         var str_received = $("#id_receiver-even-parity-input").val();
-        $message = $("#acceptance");
+        var message = $("#acceptance");
         if(count_char(str_received,'1') %2 === remainder ){
-            $message.html(acceptAlert);
+            message.html(acceptAlert);
         } 
         else{
-            $message.html(rejectAlert);
+            message.html(rejectAlert);
         }
     });
     /* --------------------------------------------------- */
